@@ -6,8 +6,12 @@ import Foundation
 import Sodium
 
 /// Production `CryptoEngine` backed by libsodium (swift-sodium).
+///
+/// Holds no stored state: `Sodium()` only ensures libsodium is initialized
+/// (idempotent), and libsodium is thread-safe, so the engine is trivially
+/// `Sendable`.
 struct SodiumCryptoEngine: CryptoEngine {
-    private let sodium = Sodium()
+    private var sodium: Sodium { Sodium() }
 
     func randomBytes(count: Int) throws -> Data {
         guard let bytes = sodium.randomBytes.buf(length: count) else {
@@ -31,16 +35,16 @@ struct SodiumCryptoEngine: CryptoEngine {
     }
 
     func seal(plaintext: Data, key: Data, associatedData: Data) throws -> SealedBox {
-        guard let result: (authenticatedCipherText: [UInt8], nonce: Aead.XChaCha20Poly1305Ietf.Nonce) =
-            sodium.aead.xchacha20poly1305ietf.encrypt(
-                message: [UInt8](plaintext),
-                secretKey: [UInt8](key),
-                additionalData: [UInt8](associatedData)
-            )
-        else {
-            throw CryptoError.authenticationFailed
-        }
-        return SealedBox(nonce: Data(result.nonce), ciphertext: Data(result.authenticatedCipherText))
+        let result = sodium.aead.xchacha20poly1305ietf.encrypt(
+            message: [UInt8](plaintext),
+            secretKey: [UInt8](key),
+            additionalData: [UInt8](associatedData)
+        )
+        guard let result else { throw CryptoError.authenticationFailed }
+        return SealedBox(
+            nonce: Data(result.nonce),
+            ciphertext: Data(result.authenticatedCipherText)
+        )
     }
 
     func open(ciphertext: Data, nonce: Data, key: Data, associatedData: Data) throws -> Data {
