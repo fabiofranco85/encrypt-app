@@ -87,8 +87,11 @@ Offset  Size  Field        Value / meaning
 64      ..    ciphertext   AEAD(inner payload) + 16-byte Poly1305 tag
 ```
 
-The first 64 bytes (the header) are passed to the AEAD as **associated data**,
-so any tampering with the parameters is also detected.
+The first **40 bytes** (magic…salt, the "pre-nonce header") are passed to the
+AEAD as **associated data**, so the version/algorithm ids and KDF parameters are
+authenticated. The `nonce` and `salt` are additionally protected implicitly:
+changing the salt derives the wrong key, and changing the nonce changes the AEAD
+stream — both cause authentication to fail.
 
 ## Text armoring
 
