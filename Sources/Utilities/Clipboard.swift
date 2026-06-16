@@ -5,6 +5,7 @@
 import UIKit
 import UniformTypeIdentifiers
 
+@MainActor
 enum Clipboard {
     /// How long copied secrets remain on the pasteboard before auto-clearing.
     static let secretLifetime: TimeInterval = 90

@@ -36,8 +36,11 @@ struct ResultCard: View {
                 exportMessage = "Couldn’t save the file."
             }
         }
-        .alert("Save error", isPresented: .constant(exportMessage != nil)) {
-            Button("OK") { exportMessage = nil }
+        .alert(
+            "Save error",
+            isPresented: Binding(get: { exportMessage != nil }, set: { if !$0 { exportMessage = nil } })
+        ) {
+            Button("OK", role: .cancel) { exportMessage = nil }
         } message: {
             Text(exportMessage ?? "")
         }
@@ -130,6 +133,7 @@ struct ResultCard: View {
 
     // MARK: Actions logic
 
+    @MainActor
     private func copy() {
         switch artifact.content {
         case .text(let text):
@@ -139,11 +143,13 @@ struct ResultCard: View {
         }
         Haptics.tap()
         withAnimation { copied = true }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(2))
             withAnimation { copied = false }
         }
     }
 
+    @MainActor
     private func prepareShareIfNeeded() {
         guard let info = fileInfo, shareURL == nil else { return }
         shareURL = try? TempFileStore.write(info.data, filename: info.filename)
@@ -165,7 +171,8 @@ struct ResultCard: View {
     }
 
     private var exportContentType: UTType {
-        contentType(forExtension: (fileInfo?.filename as NSString?)?.pathExtension ?? "")
+        guard let filename = fileInfo?.filename else { return .data }
+        return contentType(forExtension: (filename as NSString).pathExtension)
     }
 
     private var exportBaseName: String {

@@ -35,15 +35,13 @@ struct HushboxApp: App {
             )
             .tint(AppTheme.accent)
             .onOpenURL { url in
-                handleIncoming(url)
+                // A `.hushbox` file was opened from Files / a share sheet.
+                Task { @MainActor in
+                    guard let file = try? FileReader.read(url: url) else { return }
+                    decryptViewModel.load(file: file)
+                    mode = .decrypt
+                }
             }
         }
-    }
-
-    /// A `.hushbox` file was opened from Files / a share sheet.
-    private func handleIncoming(_ url: URL) {
-        guard let file = try? FileReader.read(url: url) else { return }
-        decryptViewModel.load(file: file)
-        mode = .decrypt
     }
 }
