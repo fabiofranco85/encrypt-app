@@ -64,6 +64,13 @@ The `HushboxTests` target is dependency-free (uses a deterministic fake engine)
 and forms the fast inner loop. `HushboxIntegrationTests` exercises the real
 libsodium engine end-to-end.
 
+## Ship it
+
+Step-by-step instructions to run Hushbox in the simulator, test it on your own
+iPhone via TestFlight, and publish to the App Store (including the
+encryption export-compliance and privacy steps this app needs) are in
+[`docs/shipping-guide.md`](docs/shipping-guide.md).
+
 ## A note on the build environment
 
 This repository was authored in a Linux agent environment where the Apple
