@@ -1,5 +1,7 @@
 # Hushbox 🔒
 
+[![CI](https://github.com/fabiofranco85/encrypt-app/actions/workflows/ci.yml/badge.svg)](https://github.com/fabiofranco85/encrypt-app/actions/workflows/ci.yml)
+
 **Lock your words and files behind a password.**
 
 Hushbox is an iPhone app that encrypts and decrypts **text** and **files** with
