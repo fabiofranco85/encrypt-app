@@ -81,11 +81,21 @@ so the logic is fully covered by tests that run on any Mac with Xcode. See
 
 ## Export compliance
 
-Hushbox uses standard, well-known cryptography (libsodium). When distributing
-via the App Store you must answer Apple's export-compliance questions; set
-`ITSAppUsesNonExemptEncryption` in `Info.plist` according to your distribution
-and legal review.
+Hushbox implements standard, well-known cryptography (libsodium) on top of the
+OS, so its encryption is **non-exempt**. `ITSAppUsesNonExemptEncryption` is set
+to `true` in `Info.plist`, which streamlines App Store submission and implies a
+French encryption declaration (if distributing in France) and US BIS
+self-classification (mass-market, License Exception ENC). See
+[`docs/shipping-guide.md`](docs/shipping-guide.md) §3.4 — and treat it as a
+legal determination for your distribution, not legal advice.
+
+## Privacy
+
+Hushbox collects no data — everything is on-device. The privacy policy lives at
+[`docs/privacy-policy.md`](docs/privacy-policy.md) and is published publicly as a
+[gist](https://gist.github.com/fabiofranco85/699d83b8182a251d8226ab15b05064dc)
+(the URL used in App Store Connect and in the app's **About** sheet).
 
 ## License
 
-See repository.
+[MIT](LICENSE).
