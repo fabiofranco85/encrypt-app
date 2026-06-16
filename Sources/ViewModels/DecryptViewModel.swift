@@ -18,7 +18,9 @@ final class DecryptViewModel {
 
     private let service: CryptoService
 
-    init(service: CryptoService) {
+    /// `nonisolated` so the model can be created from `App.init` (a nonisolated
+    /// context). It only stores the (Sendable) service and default values.
+    nonisolated init(service: CryptoService) {
         self.service = service
     }
 
@@ -60,7 +62,7 @@ final class DecryptViewModel {
         let file = self.pickedFile
 
         do {
-            let result = try await Task.detached(priority: .userInitiated) { () throws -> Artifact in
+            let result = try await Task.detached(priority: .userInitiated) {
                 let source: DecryptSource
                 switch mode {
                 case .paste:

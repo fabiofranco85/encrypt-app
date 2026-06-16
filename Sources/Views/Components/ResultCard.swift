@@ -31,7 +31,7 @@ struct ResultCard: View {
             defaultFilename: exportBaseName
         ) { result in
             if case .success = result {
-                Haptics.success()
+                Task { @MainActor in Haptics.success() }
             } else {
                 exportMessage = "Couldn’t save the file."
             }
