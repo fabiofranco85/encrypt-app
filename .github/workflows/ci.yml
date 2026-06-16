@@ -12,20 +12,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install XcodeGen
-        run: brew install xcodegen
+      - name: Install tools
+        run: brew install xcodegen xcbeautify
 
       - name: Generate Xcode project
         run: xcodegen generate
 
       - name: Build & run tests
         run: |
+          set -o pipefail
           xcodebuild test \
             -project Hushbox.xcodeproj \
             -scheme Hushbox \
             -destination 'platform=iOS Simulator,name=iPhone 16' \
             -resultBundlePath TestResults.xcresult \
-            | xcpretty || exit ${PIPESTATUS[0]}
+            | xcbeautify
 
       - name: Upload results
         if: always()

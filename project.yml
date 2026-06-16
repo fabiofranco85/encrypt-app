@@ -51,6 +51,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.hushbox.tests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGNING_ALLOWED: NO
         SWIFT_STRICT_CONCURRENCY: complete
 
   HushboxIntegrationTests:
@@ -64,6 +66,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.hushbox.integrationtests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGNING_ALLOWED: NO
         SWIFT_STRICT_CONCURRENCY: complete
 
 schemes:
