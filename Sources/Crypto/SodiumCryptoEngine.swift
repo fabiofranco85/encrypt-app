@@ -35,11 +35,14 @@ struct SodiumCryptoEngine: CryptoEngine {
     }
 
     func seal(plaintext: Data, key: Data, associatedData: Data) throws -> SealedBox {
-        let result = sodium.aead.xchacha20poly1305ietf.encrypt(
-            message: [UInt8](plaintext),
-            secretKey: [UInt8](key),
-            additionalData: [UInt8](associatedData)
-        )
+        // swift-sodium exposes two `encrypt` overloads differing only by return
+        // type; annotate to select the (cipherText, nonce) tuple variant.
+        let result: (authenticatedCipherText: [UInt8], nonce: [UInt8])? =
+            sodium.aead.xchacha20poly1305ietf.encrypt(
+                message: [UInt8](plaintext),
+                secretKey: [UInt8](key),
+                additionalData: [UInt8](associatedData)
+            )
         guard let result else { throw CryptoError.authenticationFailed }
         return SealedBox(
             nonce: Data(result.nonce),
