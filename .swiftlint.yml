@@ -1,0 +1,33 @@
+# SwiftLint configuration for Hushbox.
+# Run `swiftlint` from the repo root (requires `brew install swiftlint`).
+
+included:
+  - Sources
+  - Tests
+
+excluded:
+  - Hushbox.xcodeproj
+  - .build
+
+disabled_rules:
+  - todo
+
+opt_in_rules:
+  - empty_count
+  - closure_spacing
+  - explicit_init
+  - first_where
+  - sorted_imports
+
+line_length:
+  warning: 120
+  ignores_comments: true
+
+identifier_name:
+  min_length: 1 # allow short locals like `a`, `b` in tests
+
+type_body_length:
+  warning: 350
+
+file_length:
+  warning: 450

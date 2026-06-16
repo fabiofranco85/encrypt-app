@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+# Cancel superseded runs on the same ref to save runner time.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build & Test
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Install tools
+        run: brew install xcodegen xcbeautify
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build & run tests
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -project Hushbox.xcodeproj \
+            -scheme Hushbox \
+            -destination 'platform=iOS Simulator,name=iPhone 16' \
+            -resultBundlePath TestResults.xcresult \
+            | xcbeautify
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: test-results
+          path: TestResults.xcresult
