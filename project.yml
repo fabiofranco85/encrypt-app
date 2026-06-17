@@ -2,7 +2,7 @@ name: Hushbox
 options:
   bundleIdPrefix: com.hushbox
   deploymentTarget:
-    iOS: "17.0"
+    iOS: "26.0"
   createIntermediateGroups: true
   groupSortPosition: top
 
@@ -23,7 +23,7 @@ targets:
   Hushbox:
     type: application
     platform: iOS
-    deploymentTarget: "17.0"
+    deploymentTarget: "26.0"
     sources:
       - path: Sources
     dependencies:
@@ -43,7 +43,7 @@ targets:
   HushboxTests:
     type: bundle.unit-test
     platform: iOS
-    deploymentTarget: "17.0"
+    deploymentTarget: "26.0"
     sources:
       - path: Tests/HushboxTests
     dependencies:
@@ -58,7 +58,7 @@ targets:
   HushboxIntegrationTests:
     type: bundle.unit-test
     platform: iOS
-    deploymentTarget: "17.0"
+    deploymentTarget: "26.0"
     sources:
       - path: Tests/HushboxIntegrationTests
     dependencies:

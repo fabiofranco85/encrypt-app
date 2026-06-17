@@ -41,8 +41,9 @@ artifact format.
 
 ## Build & run
 
-Requires **macOS + Xcode 16+**. The Xcode project is generated from
-`project.yml` (reproducible and reviewable).
+Requires **macOS + Xcode 26+** (Hushbox targets **iOS 26** and uses the Liquid
+Glass design). The Xcode project is generated from `project.yml` (reproducible
+and reviewable).
 
 ```bash
 brew install xcodegen          # one-time

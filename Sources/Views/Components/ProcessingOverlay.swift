@@ -12,13 +12,13 @@ struct ProcessingOverlay: View {
             VStack(spacing: AppTheme.Spacing.medium) {
                 ProgressView()
                     .controlSize(.large)
-                    .tint(.white)
                 Text(message)
                     .font(.callout)
-                    .foregroundStyle(.white)
             }
             .padding(AppTheme.Spacing.large)
-            .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: AppTheme.cornerRadius))
+            // Floating modal layer → Liquid Glass. Colors stay adaptive so the
+            // label reads against whatever shows through the glass.
+            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: AppTheme.cornerRadius))
         }
         .accessibilityElement(children: .combine)
         .accessibilityLabel(message)

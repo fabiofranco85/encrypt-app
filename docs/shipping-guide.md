@@ -14,7 +14,7 @@ iPhone via TestFlight, and publish it to the App Store.
 | Need | Notes |
 |------|-------|
 | A **Mac** | Apple Silicon or Intel, on a current macOS. |
-| **Xcode 16+** | Install from the Mac App Store, then run it once to finish component setup. |
+| **Xcode 26+** | **Required** — Hushbox targets **iOS 26** and uses Liquid Glass, so it needs the iOS 26 SDK. Install from the Mac App Store, then run it once to finish component setup. |
 | **Command Line Tools** | `xcode-select --install` (usually installed with Xcode). |
 | **Homebrew** | <https://brew.sh> — used to install XcodeGen. |
 | **XcodeGen** | `brew install xcodegen` |

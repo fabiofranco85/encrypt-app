@@ -14,6 +14,8 @@ uploading the binary, see [`shipping-guide.md`](shipping-guide.md).
 - ☐ **Apple Developer Program** membership — **$99/year**. Required for
   TestFlight and App Store. Enroll at <https://developer.apple.com/programs/>.
 - ☐ Signed in to <https://appstoreconnect.apple.com> with that Apple ID.
+- ℹ️ **Minimum iOS: 26.** Hushbox uses Liquid Glass, so only devices on iOS 26+
+  can install it. Capture your App Store screenshots from an **iOS 26** simulator.
 
 ---
 
