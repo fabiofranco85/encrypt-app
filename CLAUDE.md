@@ -42,7 +42,8 @@ library. **Never** call libsodium directly from view models or views.
 
 ## Architecture
 
-- SwiftUI, Swift 6, strict concurrency.
+- SwiftUI, Swift 6, strict concurrency. Minimum deployment target **iOS 26**;
+  the UI adopts the **Liquid Glass** design (build with **Xcode 26**).
 - `@Observable` view models, `@MainActor`-isolated UI.
 - MVVM: `Views` ⇄ `ViewModels` ⇄ `CryptoService` ⇄ `CryptoEngine`.
 - Pure, deterministic logic (container codec, armor, payload, password

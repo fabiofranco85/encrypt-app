@@ -73,6 +73,5 @@ struct DecryptView: View {
             Task { await viewModel.decrypt() }
         }
         .disabled(!viewModel.canDecrypt)
-        .opacity(viewModel.canDecrypt ? 1 : 0.5)
     }
 }

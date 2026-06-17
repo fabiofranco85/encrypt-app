@@ -8,6 +8,8 @@ struct RootView: View {
     let encryptViewModel: EncryptViewModel
     let decryptViewModel: DecryptViewModel
 
+    @State private var showingAbout = false
+
     var body: some View {
         NavigationStack {
             VStack(spacing: AppTheme.Spacing.medium) {
@@ -27,6 +29,19 @@ struct RootView: View {
             .navigationTitle("Hushbox")
             .navigationBarTitleDisplayMode(.inline)
             .background(backgroundGradient)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showingAbout = true
+                    } label: {
+                        Image(systemName: "info.circle")
+                    }
+                    .accessibilityLabel("About and privacy policy")
+                }
+            }
+            .sheet(isPresented: $showingAbout) {
+                AboutView()
+            }
         }
     }
 

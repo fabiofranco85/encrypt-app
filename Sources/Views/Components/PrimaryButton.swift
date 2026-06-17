@@ -21,10 +21,14 @@ struct PrimaryButton: View {
                     .fontWeight(.semibold)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
+            .padding(.vertical, 8)
             .foregroundStyle(.white)
-            .background(AppTheme.brandGradient, in: RoundedRectangle(cornerRadius: AppTheme.cornerRadius))
         }
+        // Liquid Glass prominent CTA, tinted with the Hushbox brand color so the
+        // purple identity survives the move from the old gradient fill.
+        .buttonStyle(.glassProminent)
+        .controlSize(.large)
+        .tint(AppTheme.accent)
         .disabled(isBusy)
     }
 }

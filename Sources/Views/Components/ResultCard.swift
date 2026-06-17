@@ -96,9 +96,13 @@ struct ResultCard: View {
     }
 
     private var actions: some View {
-        HStack(spacing: AppTheme.Spacing.small) {
-            ForEach(artifact.allowedActions, id: \.self) { action in
-                actionView(for: action)
+        // The action cluster is the control layer → Liquid Glass. A container
+        // lets the sibling glass buttons blend/morph instead of stacking.
+        GlassEffectContainer(spacing: AppTheme.Spacing.small) {
+            HStack(spacing: AppTheme.Spacing.small) {
+                ForEach(artifact.allowedActions, id: \.self) { action in
+                    actionView(for: action)
+                }
             }
         }
     }
@@ -108,12 +112,15 @@ struct ResultCard: View {
         switch action {
         case .copy:
             Button(action: copy) { ActionChip(title: "Copy", systemImage: "doc.on.doc") }
+                .buttonStyle(.glass)
         case .share:
             if let shareURL {
                 ShareLink(item: shareURL) { ActionChip(title: "Share", systemImage: "square.and.arrow.up") }
+                    .buttonStyle(.glass)
             }
         case .save:
             Button { showExporter = true } label: { ActionChip(title: "Save", systemImage: "tray.and.arrow.down") }
+                .buttonStyle(.glass)
         }
     }
 
@@ -188,7 +195,9 @@ struct ResultCard: View {
     }
 }
 
-/// Shared styling for a secondary action button.
+/// Shared label for a secondary action button. The Liquid Glass background is
+/// supplied by `.buttonStyle(.glass)` on the enclosing control, so the chip
+/// itself only carries the tinted label (no manual background).
 private struct ActionChip: View {
     let title: String
     let systemImage: String
@@ -197,8 +206,7 @@ private struct ActionChip: View {
         Label(title, systemImage: systemImage)
             .font(.subheadline.weight(.medium))
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 12)
-            .background(AppTheme.accent.opacity(0.12), in: RoundedRectangle(cornerRadius: 12))
+            .padding(.vertical, 6)
             .foregroundStyle(AppTheme.accent)
     }
 }

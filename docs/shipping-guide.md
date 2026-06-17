@@ -14,7 +14,7 @@ iPhone via TestFlight, and publish it to the App Store.
 | Need | Notes |
 |------|-------|
 | A **Mac** | Apple Silicon or Intel, on a current macOS. |
-| **Xcode 16+** | Install from the Mac App Store, then run it once to finish component setup. |
+| **Xcode 26+** | **Required** — Hushbox targets **iOS 26** and uses Liquid Glass, so it needs the iOS 26 SDK. Install from the Mac App Store, then run it once to finish component setup. |
 | **Command Line Tools** | `xcode-select --install` (usually installed with Xcode). |
 | **Homebrew** | <https://brew.sh> — used to install XcodeGen. |
 | **XcodeGen** | `brew install xcodegen` |
@@ -179,24 +179,38 @@ manual export, or use `method: app-store-connect`.)
 ### 3.4 ⚠️ Export compliance (because Hushbox uses encryption)
 
 After the build finishes processing, App Store Connect asks **export compliance**
-questions. Hushbox uses standard, published cryptography (libsodium). Typically:
+questions. Hushbox **implements** standard, published cryptography (Argon2id +
+XChaCha20-Poly1305 via libsodium) *in addition to* the OS — that is
+**non-exempt** encryption, **not** one of the simple exemptions (which cover
+only OS-built-in crypto, HTTPS, authentication-only, or DRM). So:
 
 - "Does your app use encryption?" → **Yes**.
-- "Does it qualify for the exemptions?" → standard crypto generally qualifies
-  under the **(b) exemption**, but **confirm for your situation**.
+- "Does it qualify for the exemptions?" → **No** — Hushbox encrypts arbitrary
+  user data with its own crypto, which is non-exempt.
 
-To stop being asked on every upload, add this to `Sources/Resources/Info.plist`
-once you've confirmed your answer:
+The key is **already set** in `Sources/Resources/Info.plist` so the questionnaire
+won't re-appear on every upload:
 
 ```xml
 <key>ITSAppUsesNonExemptEncryption</key>
-<false/>
+<true/>
 ```
 
-> `<false/>` means "uses only exempt encryption." If your use is **not** exempt,
-> set `<true/>` and be prepared to upload a French encryption declaration / year
-> -end self-classification report. **This is a legal/compliance question — verify
-> it for your case; this guide is not legal advice.**
+`<true/>` ("uses non-exempt encryption") is the accurate value here. It implies
+two real obligations, both standard for an open-source-crypto app:
+
+1. **France:** upload a **French encryption declaration** in App Store Connect —
+   *only* if you distribute on the App Store in France. (Exclude France and this
+   isn't triggered.)
+2. **US BIS:** Hushbox is a **mass-market** product (ECCN 5A992.c/5D992.c) under
+   **License Exception ENC §740.17(b)(1)**. You self-classify and file a short
+   **annual self-classification report** to BIS (a granted **CCATS** waives the
+   annual report).
+
+> **This is a legal/compliance question — verify it for your distribution; this
+> guide is not legal advice.** If, after review, you conclude your use *is*
+> exempt, set the key to `<false/>` instead. Do not leave it unset, or you'll be
+> re-asked on every upload.
 
 ### 3.5 Invite testers
 
@@ -227,6 +241,13 @@ In App Store Connect ▸ your app ▸ the version you're submitting:
 - **App icon** — already shipped in the asset catalog (1024px).
 - **Category** — e.g. *Utilities*.
 - **Age rating** — answer the questionnaire.
+- **Privacy policy URL** — **required for every app**, even one that collects no
+  data (App Review Guideline 5.1.1(i)). The policy ([`docs/privacy-policy.md`](privacy-policy.md))
+  is published as a public gist:
+  <https://gist.github.com/fabiofranco85/699d83b8182a251d8226ab15b05064dc>.
+  Paste that URL into **App Information ▸ Privacy Policy**. Hushbox also surfaces
+  the same link in-app via the **ⓘ About** sheet (the guideline requires it in
+  *both* places); the URL lives in one place in code: `AppInfo.privacyPolicyURL`.
 
 ### 4.2 App Privacy ("nutrition label")
 
