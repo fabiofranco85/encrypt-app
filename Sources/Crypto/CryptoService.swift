@@ -20,7 +20,7 @@ struct CryptoService: Sendable {
     }
 
     /// File extension applied to encrypted file artifacts.
-    static let fileExtension = "hushbox"
+    static let fileExtension = "cipherbox"
 
     // MARK: Encrypt
 
@@ -34,7 +34,7 @@ struct CryptoService: Sendable {
         return Artifact(content: .text(MessageArmor.armor(container)))
     }
 
-    /// Encrypts a file into a `.hushbox` artifact (copy / share / save).
+    /// Encrypts a file into a `.cipherbox` artifact (copy / share / save).
     func encryptFile(
         data: Data,
         filename: String,
@@ -52,7 +52,7 @@ struct CryptoService: Sendable {
 
     // MARK: Decrypt
 
-    /// Decrypts an armored message or a `.hushbox` container, returning either
+    /// Decrypts an armored message or a `.cipherbox` container, returning either
     /// recovered text (copy-only) or a recovered file (copy / share / save).
     func decrypt(_ source: DecryptSource, password: String) throws -> Artifact {
         guard !password.isEmpty else { throw CryptoError.emptyPassword }

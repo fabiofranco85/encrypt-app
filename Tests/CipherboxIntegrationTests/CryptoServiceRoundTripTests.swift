@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hushbox
+@testable import Cipherbox
 
 /// End-to-end encrypt → decrypt using the REAL libsodium engine.
 final class CryptoServiceRoundTripTests: XCTestCase {
@@ -23,7 +23,7 @@ final class CryptoServiceRoundTripTests: XCTestCase {
             data: original, filename: "secret.bin", password: password, parameters: params
         )
         guard case let .file(container, name) = artifact.content else { return XCTFail() }
-        XCTAssertEqual(name, "secret.bin.hushbox")
+        XCTAssertEqual(name, "secret.bin.cipherbox")
 
         let decrypted = try service.decrypt(.container(container), password: password)
         XCTAssertEqual(decrypted.content, .file(data: original, filename: "secret.bin"))

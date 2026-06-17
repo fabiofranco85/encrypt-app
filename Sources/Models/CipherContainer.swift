@@ -1,10 +1,10 @@
 //  CipherContainer.swift
-//  The binary format (v1) of a Hushbox artifact. Header fields are PLAINTEXT;
+//  The binary format (v1) of a Cipherbox artifact. Header fields are PLAINTEXT;
 //  all secrets live inside `ciphertext`. See docs/crypto-design.md.
 
 import Foundation
 
-/// A parsed Hushbox artifact.
+/// A parsed Cipherbox artifact.
 ///
 /// On-wire layout (big-endian):
 /// ```

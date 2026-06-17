@@ -1,6 +1,6 @@
-name: Hushbox
+name: Cipherbox
 options:
-  bundleIdPrefix: com.hushbox
+  bundleIdPrefix: com.cipherbox
   deploymentTarget:
     iOS: "26.0"
   createIntermediateGroups: true
@@ -20,7 +20,7 @@ settings:
     CURRENT_PROJECT_VERSION: "1"
 
 targets:
-  Hushbox:
+  Cipherbox:
     type: application
     platform: iOS
     deploymentTarget: "26.0"
@@ -30,8 +30,8 @@ targets:
       - package: Sodium
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.hushbox.app
-        PRODUCT_NAME: Hushbox
+        PRODUCT_BUNDLE_IDENTIFIER: com.cipherbox.app
+        PRODUCT_NAME: Cipherbox
         TARGETED_DEVICE_FAMILY: "1" # iPhone only
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: Sources/Resources/Info.plist
@@ -40,46 +40,46 @@ targets:
         SWIFT_STRICT_CONCURRENCY: complete
         CODE_SIGN_STYLE: Automatic
 
-  HushboxTests:
+  CipherboxTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: Tests/HushboxTests
+      - path: Tests/CipherboxTests
     dependencies:
-      - target: Hushbox
+      - target: Cipherbox
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.hushbox.tests
+        PRODUCT_BUNDLE_IDENTIFIER: com.cipherbox.tests
         GENERATE_INFOPLIST_FILE: YES
         CODE_SIGNING_ALLOWED: NO
         SWIFT_STRICT_CONCURRENCY: complete
 
-  HushboxIntegrationTests:
+  CipherboxIntegrationTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: Tests/HushboxIntegrationTests
+      - path: Tests/CipherboxIntegrationTests
     dependencies:
-      - target: Hushbox
+      - target: Cipherbox
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.hushbox.integrationtests
+        PRODUCT_BUNDLE_IDENTIFIER: com.cipherbox.integrationtests
         GENERATE_INFOPLIST_FILE: YES
         CODE_SIGNING_ALLOWED: NO
         SWIFT_STRICT_CONCURRENCY: complete
 
 schemes:
-  Hushbox:
+  Cipherbox:
     build:
       targets:
-        Hushbox: all
+        Cipherbox: all
     run:
       config: Debug
     test:
       config: Debug
       gatherCoverageData: true
       targets:
-        - HushboxTests
-        - HushboxIntegrationTests
+        - CipherboxTests
+        - CipherboxIntegrationTests

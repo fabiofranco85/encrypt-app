@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hushbox
+@testable import Cipherbox
 
 final class CipherContainerCodecTests: XCTestCase {
     private func sampleContainer() -> CipherContainer {

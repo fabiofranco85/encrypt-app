@@ -66,8 +66,8 @@ bottom. Targeting **iOS 17+**, **Swift 6**, **Xcode 16+**.
 - **`.fileExporter`** for "Save to Files".
 - **`.fileImporter`** for picking files/artifacts to process; access
   security-scoped URLs with `startAccessingSecurityScopedResource()`.
-- Declare a custom **exported UTType** (`com.hushbox.cipher`, extension
-  `.hushbox`) and `CFBundleDocumentTypes` so artifacts open back into the app.
+- Declare a custom **exported UTType** (`com.cipherbox.cipher`, extension
+  `.cipherbox`) and `CFBundleDocumentTypes` so artifacts open back into the app.
 
 ## Testing
 

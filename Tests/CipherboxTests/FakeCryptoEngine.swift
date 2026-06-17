@@ -4,7 +4,7 @@
 //  the higher layers can be exercised without building libsodium.
 
 import Foundation
-@testable import Hushbox
+@testable import Cipherbox
 
 struct FakeCryptoEngine: CryptoEngine {
     func randomBytes(count: Int) throws -> Data {

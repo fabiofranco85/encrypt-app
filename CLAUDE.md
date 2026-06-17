@@ -4,7 +4,7 @@ Guidance for AI agents (and humans) working in this repository.
 
 ## What this is
 
-**Hushbox** is an iOS (iPhone) app that encrypts and decrypts **text** and
+**Cipherbox** is an iOS (iPhone) app that encrypts and decrypts **text** and
 **files** with a user-supplied password. Everything happens **on-device** — no
 network, no accounts, no telemetry. The password never leaves memory and is
 never written to disk or logs.
@@ -67,8 +67,8 @@ Sources/
   Utilities/             clipboard, haptics, file export, UTType, helpers
   Resources/             Assets, Info.plist
 Tests/
-  HushboxTests/          pure unit tests (no native dep) — run anywhere with Xcode
-  HushboxIntegrationTests/  real-crypto round trips (require libsodium build)
+  CipherboxTests/          pure unit tests (no native dep) — run anywhere with Xcode
+  CipherboxIntegrationTests/  real-crypto round trips (require libsodium build)
 ```
 
 ## Build & test
@@ -78,13 +78,13 @@ This app is built with Xcode on macOS. The project is generated from
 
 ```bash
 brew install xcodegen          # one-time
-xcodegen generate              # produces Hushbox.xcodeproj from project.yml
-open Hushbox.xcodeproj
+xcodegen generate              # produces Cipherbox.xcodeproj from project.yml
+open Cipherbox.xcodeproj
 
 # Tests (CLI):
 xcodebuild test \
-  -project Hushbox.xcodeproj \
-  -scheme Hushbox \
+  -project Cipherbox.xcodeproj \
+  -scheme Cipherbox \
   -destination 'platform=iOS Simulator,name=iPhone 16'
 ```
 
