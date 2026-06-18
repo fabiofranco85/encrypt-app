@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hushbox
+@testable import Cipherbox
 
 @MainActor
 final class DecryptViewModelTests: XCTestCase {
@@ -50,8 +50,8 @@ final class DecryptViewModelTests: XCTestCase {
 
     func test_loadFile_switchesToFileModeAndClearsResult() {
         let viewModel = DecryptViewModel(service: service)
-        viewModel.load(file: PickedFile(filename: "x.hushbox", data: Data([1, 2, 3])))
+        viewModel.load(file: PickedFile(filename: "x.cipherbox", data: Data([1, 2, 3])))
         XCTAssertEqual(viewModel.inputMode, .file)
-        XCTAssertEqual(viewModel.pickedFile?.filename, "x.hushbox")
+        XCTAssertEqual(viewModel.pickedFile?.filename, "x.cipherbox")
     }
 }

@@ -1,4 +1,4 @@
-# App Store listing — copy-paste fields (Hushbox v1.0)
+# App Store listing — copy-paste fields (Cipherbox v1.0)
 
 Everything to paste into **App Store Connect** when creating the listing. Character
 limits are noted; current drafts are within them. Pair this with
@@ -8,7 +8,7 @@ limits are noted; current drafts are within them. Pair this with
 
 ## Name & subtitle
 
-- **App Name** (≤30): `Hushbox`
+- **App Name** (≤30): `Cipherbox`
 - **Subtitle** (≤30): `Encrypt text & files, offline`
 
 ## Promotional text (≤170, editable anytime without review)
@@ -26,14 +26,14 @@ encrypt,decrypt,password,secure,private,privacy,vault,cipher,lock,offline,file,s
 ## Description (≤4000)
 
 ```
-Hushbox locks your private words and files behind a password — and nothing else. No accounts to create, no servers to trust, no internet connection required. Everything happens on your iPhone, and your password never leaves it.
+Cipherbox locks your private words and files behind a password — and nothing else. No accounts to create, no servers to trust, no internet connection required. Everything happens on your iPhone, and your password never leaves it.
 
 WHAT IT DOES
 • Encrypt any text or file with a password.
-• Decrypt it later — on any iPhone with Hushbox and the same password.
+• Decrypt it later — on any iPhone with Cipherbox and the same password.
 • Encrypted text becomes a block you can copy and paste anywhere: a note, a message, an email.
-• Encrypted files become a .hushbox artifact you can copy, share, or save.
-• Open a .hushbox file from the Files app or a share sheet to decrypt it.
+• Encrypted files become a .cipherbox artifact you can copy, share, or save.
+• Open a .cipherbox file from the Files app or a share sheet to decrypt it.
 
 PRIVATE BY DESIGN
 • 100% on-device. No accounts. No network. No analytics. No tracking.
@@ -43,7 +43,7 @@ PRIVATE BY DESIGN
 STRONG, MODERN ENCRYPTION
 • Argon2id (RFC 9106) turns your password into a key and resists brute-force cracking.
 • XChaCha20-Poly1305 authenticated encryption protects and verifies your data.
-• A wrong password or tampered data fails loudly and safely — Hushbox never hands you garbage output.
+• A wrong password or tampered data fails loudly and safely — Cipherbox never hands you garbage output.
 
 THOUGHTFUL DETAILS
 • Live password-strength meter and confirm-password to prevent lockouts.
@@ -52,9 +52,9 @@ THOUGHTFUL DETAILS
 • Built for the latest iPhone look with the new Liquid Glass design.
 
 IMPORTANT
-If you lose your password, your data cannot be recovered. Keep it somewhere safe — Hushbox holds no keys and has no way to reset it. That is exactly what makes it private.
+If you lose your password, your data cannot be recovered. Keep it somewhere safe — Cipherbox holds no keys and has no way to reset it. That is exactly what makes it private.
 
-Lock your words and files behind a password. That's Hushbox.
+Lock your words and files behind a password. That's Cipherbox.
 ```
 
 ## URLs
@@ -94,7 +94,7 @@ Expected result: **4+**.
 `ITSAppUsesNonExemptEncryption` is already `true` in the build, so the app declares
 non-exempt encryption. If App Store Connect asks:
 - Uses encryption: **Yes**
-- Uses only exemptions (OS-only / HTTPS / authentication / DRM): **No** — Hushbox
+- Uses only exemptions (OS-only / HTTPS / authentication / DRM): **No** — Cipherbox
   encrypts arbitrary user data with its own standard algorithms.
 - Proprietary/non-standard algorithms: **No** → **no US CCATS needed.**
 - Distributing in France: **No** → **no French declaration needed.**
@@ -112,7 +112,7 @@ non-exempt encryption. If App Store Connect asks:
 - **Notes** (paste this):
 
 ```
-Hushbox works fully offline with no account — there is nothing to sign into, and the app makes no network requests.
+Cipherbox works fully offline with no account — there is nothing to sign into, and the app makes no network requests.
 
 To test encryption → decryption (text):
 1. On the Encrypt tab, keep "Text" selected and type any message, e.g. "hello world".
@@ -123,8 +123,8 @@ To test encryption → decryption (text):
 
 To test a file:
 1. On Encrypt choose "File", pick any file, set a password, tap Encrypt.
-2. Save or Share the resulting .hushbox artifact.
-3. Decrypt it from the Decrypt tab's "File" option, or by opening the .hushbox file from the Files app.
+2. Save or Share the resulting .cipherbox artifact.
+3. Decrypt it from the Decrypt tab's "File" option, or by opening the .cipherbox file from the Files app.
 
 A wrong password intentionally fails with an error rather than producing output — this is the expected, safe behavior. No data leaves the device.
 ```
@@ -147,7 +147,7 @@ smaller sizes are derived automatically. 3–10 images; suggested 5:
 
 Capture command (per screen, after navigating there):
 ```bash
-xcrun simctl io booted screenshot ~/Desktop/hushbox-01.png
+xcrun simctl io booted screenshot ~/Desktop/cipherbox-01.png
 ```
 
 ## What's New

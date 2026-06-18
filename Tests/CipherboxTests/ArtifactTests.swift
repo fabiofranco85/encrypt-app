@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hushbox
+@testable import Cipherbox
 
 final class ArtifactTests: XCTestCase {
     func test_textArtifact_isCopyOnly() {

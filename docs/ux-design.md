@@ -1,6 +1,6 @@
 # UX Design
 
-Hushbox should feel calm, trustworthy, and effortless — security software that
+Cipherbox should feel calm, trustworthy, and effortless — security software that
 doesn't feel like security software.
 
 ## Design principles
@@ -38,8 +38,8 @@ doesn't feel like security software.
 
 ## Primary flow — Decrypt
 
-1. Provide input: paste an armored message **or** pick a `.hushbox` file
-   (also reachable via the system share sheet → "Open in Hushbox").
+1. Provide input: paste an armored message **or** pick a `.cipherbox` file
+   (also reachable via the system share sheet → "Open in Cipherbox").
 2. Enter password.
 3. Tap **Decrypt** → progress overlay.
 4. Result:

@@ -24,7 +24,7 @@ struct PrimaryButton: View {
             .padding(.vertical, 8)
             .foregroundStyle(.white)
         }
-        // Liquid Glass prominent CTA, tinted with the Hushbox brand color so the
+        // Liquid Glass prominent CTA, tinted with the Cipherbox brand color so the
         // purple identity survives the move from the old gradient fill.
         .buttonStyle(.glassProminent)
         .controlSize(.large)

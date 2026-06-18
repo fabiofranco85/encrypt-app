@@ -1,6 +1,6 @@
 # Documentation Guidelines
 
-How we document Hushbox. Applies to source comments, docs, and commit messages.
+How we document Cipherbox. Applies to source comments, docs, and commit messages.
 
 ## Principles
 
@@ -45,7 +45,7 @@ file-level invariant. No author/date lines (git owns that).
 
 ```swift
 //  CipherContainer.swift
-//  The on-disk/on-wire binary format for a Hushbox artifact (v1).
+//  The on-disk/on-wire binary format for a Cipherbox artifact (v1).
 //  Header fields are PLAINTEXT; all secrets live inside the AEAD ciphertext.
 ```
 

@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hushbox
+@testable import Cipherbox
 
 @MainActor
 final class EncryptViewModelTests: XCTestCase {

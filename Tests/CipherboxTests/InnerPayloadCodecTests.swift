@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hushbox
+@testable import Cipherbox
 
 final class InnerPayloadCodecTests: XCTestCase {
     func test_textPayload_roundTrips() throws {

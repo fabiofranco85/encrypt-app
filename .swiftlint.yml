@@ -1,4 +1,4 @@
-# SwiftLint configuration for Hushbox.
+# SwiftLint configuration for Cipherbox.
 # Run `swiftlint` from the repo root (requires `brew install swiftlint`).
 
 included:
@@ -6,7 +6,7 @@ included:
   - Tests
 
 excluded:
-  - Hushbox.xcodeproj
+  - Cipherbox.xcodeproj
   - .build
 
 disabled_rules:

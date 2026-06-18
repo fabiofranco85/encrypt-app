@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      # Hushbox targets iOS 26 and uses Liquid Glass, so it needs the iOS 26 SDK.
+      # Cipherbox targets iOS 26 and uses Liquid Glass, so it needs the iOS 26 SDK.
       # The macos-15 image ships several Xcodes; 16.4 is the default, so select 26.
       - name: Select Xcode 26.3
         run: sudo xcode-select -s /Applications/Xcode_26.3.app
@@ -32,8 +32,8 @@ jobs:
         run: |
           set -o pipefail
           xcodebuild test \
-            -project Hushbox.xcodeproj \
-            -scheme Hushbox \
+            -project Cipherbox.xcodeproj \
+            -scheme Cipherbox \
             -destination 'platform=iOS Simulator,name=iPhone 16,OS=26.2' \
             -resultBundlePath TestResults.xcresult \
             | xcbeautify

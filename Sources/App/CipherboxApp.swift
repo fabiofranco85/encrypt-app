@@ -1,5 +1,5 @@
-//  HushboxApp.swift
-//  App entry point. Wires up the production crypto engine and routes `.hushbox`
+//  CipherboxApp.swift
+//  App entry point. Wires up the production crypto engine and routes `.cipherbox`
 //  files opened from outside the app into the Decrypt screen.
 
 import SwiftUI
@@ -15,7 +15,7 @@ enum AppMode: String, CaseIterable, Identifiable, Sendable {
 }
 
 @main
-struct HushboxApp: App {
+struct CipherboxApp: App {
     @State private var mode: AppMode = .encrypt
     @State private var encryptViewModel: EncryptViewModel
     @State private var decryptViewModel: DecryptViewModel
@@ -35,7 +35,7 @@ struct HushboxApp: App {
             )
             .tint(AppTheme.accent)
             .onOpenURL { url in
-                // A `.hushbox` file was opened from Files / a share sheet.
+                // A `.cipherbox` file was opened from Files / a share sheet.
                 Task { @MainActor in
                     guard let file = try? FileReader.read(url: url) else { return }
                     decryptViewModel.load(file: file)

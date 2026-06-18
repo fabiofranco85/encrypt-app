@@ -1,5 +1,5 @@
 import XCTest
-@testable import Hushbox
+@testable import Cipherbox
 
 final class ByteCodecTests: XCTestCase {
     func test_writeThenRead_roundTripsIntegers() throws {

@@ -1,11 +1,11 @@
-# App Store Connect submission checklist (Hushbox)
+# App Store Connect submission checklist (Cipherbox)
 
 A do-this-in-order checklist for the steps that happen **in App Store Connect /
 on Apple's side** — the parts that can't live in the repo. For building and
 uploading the binary, see [`shipping-guide.md`](shipping-guide.md).
 
 > Legend: ☐ = you do this in a browser / on your Mac. Items marked **decision**
-> need a choice from you; the recommended answer for Hushbox is given.
+> need a choice from you; the recommended answer for Cipherbox is given.
 
 ---
 
@@ -14,7 +14,7 @@ uploading the binary, see [`shipping-guide.md`](shipping-guide.md).
 - ☐ **Apple Developer Program** membership — **$99/year**. Required for
   TestFlight and App Store. Enroll at <https://developer.apple.com/programs/>.
 - ☐ Signed in to <https://appstoreconnect.apple.com> with that Apple ID.
-- ℹ️ **Minimum iOS: 26.** Hushbox uses Liquid Glass, so only devices on iOS 26+
+- ℹ️ **Minimum iOS: 26.** Cipherbox uses Liquid Glass, so only devices on iOS 26+
   can install it. Capture your App Store screenshots from an **iOS 26** simulator.
 
 ---
@@ -24,12 +24,12 @@ uploading the binary, see [`shipping-guide.md`](shipping-guide.md).
 App Store Connect ▸ **Apps** ▸ **＋ New App**:
 
 - ☐ **Platform:** iOS
-- ☐ **Name:** `Hushbox` (must be unique across the App Store — have a backup
+- ☐ **Name:** `Cipherbox` (must be unique across the App Store — have a backup
   name ready in case it's taken)
 - ☐ **Primary language:** English (or your choice)
-- ☐ **Bundle ID:** `com.hushbox.app` (register it first under *Certificates,
+- ☐ **Bundle ID:** `com.cipherbox.app` (register it first under *Certificates,
   Identifiers & Profiles ▸ Identifiers* if it isn't listed)
-- ☐ **SKU:** any internal string, e.g. `hushbox-001`
+- ☐ **SKU:** any internal string, e.g. `cipherbox-001`
 
 ---
 
@@ -75,7 +75,7 @@ On the version page:
   policy from its **ⓘ About** sheet. If you edit `docs/privacy-policy.md`, update
   the gist too: `gh gist edit 699d83b8182a251d8226ab15b05064dc`.)*
 - ☐ **App Privacy** ("nutrition label") — click **Get Started**, then
-  **decision → select "No, we do not collect data from this app."** Hushbox
+  **decision → select "No, we do not collect data from this app."** Cipherbox
   processes everything on-device and transmits nothing, so "Data Not Collected"
   is the honest, correct answer. Save.
 
@@ -86,7 +86,7 @@ On the version page:
 Because the app implements real encryption, App Store Connect asks export
 questions. `ITSAppUsesNonExemptEncryption` is already set to `true` in the
 build, so it knows the encryption is **non-exempt** and will ask you to confirm
-how it qualifies. For Hushbox:
+how it qualifies. For Cipherbox:
 
 - ☐ The encryption uses **standard, published algorithms** (Argon2id, ChaCha20)
   via libsodium — **not** proprietary. So no US CCATS is required.
@@ -95,7 +95,7 @@ how it qualifies. For Hushbox:
 - ☐ **US BIS — the one external legal item.** Uploading to Apple is an *export
   from the United States*, so US export rules apply **regardless of which
   countries you sell in** (see the clarification note your developer left you).
-  Hushbox is a free, mass-market product using standard crypto, which fits
+  Cipherbox is a free, mass-market product using standard crypto, which fits
   **License Exception ENC (§740.17(b)(1))**. The practical obligation is a short
   **annual self-classification report** to BIS. **Verify this for your
   situation** — start at Apple's guide and BIS:
