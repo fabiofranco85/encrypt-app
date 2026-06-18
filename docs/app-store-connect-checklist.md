@@ -84,9 +84,11 @@ On the version page:
 ## 5. Export compliance (encryption)
 
 Because the app implements real encryption, App Store Connect asks export
-questions. `ITSAppUsesNonExemptEncryption` is already set to `true` in the
-build, so it knows the encryption is **non-exempt** and will ask you to confirm
-how it qualifies. For Quietbox:
+questions when you upload/submit the build. The Info.plist does **not** declare
+`ITSAppUsesNonExemptEncryption` (baking in `true` without a matching
+`ITSEncryptionExportComplianceCode` causes upload **error 90592**), so you answer
+in ASC: *uses encryption* → **Yes**; *only simple exemptions (OS/HTTPS/auth/DRM)*
+→ **No**; *proprietary algorithms* → **No**. For Quietbox:
 
 - ☐ The encryption uses **standard, published algorithms** (Argon2id, ChaCha20)
   via libsodium — **not** proprietary. So no US CCATS is required.
@@ -102,9 +104,8 @@ how it qualifies. For Quietbox:
   - <https://developer.apple.com/documentation/security/complying-with-encryption-export-regulations>
   - <https://www.bis.gov/learn-support/encryption-controls/annual-self-classification>
 
-> This is a compliance question, not legal advice. The crypto choice and the
-> `ITSAppUsesNonExemptEncryption=true` value are correct; the BIS report is the
-> only paperwork that may apply.
+> This is a compliance question, not legal advice. The crypto is standard and
+> mass-market; the BIS report is the only paperwork that may apply.
 
 ---
 

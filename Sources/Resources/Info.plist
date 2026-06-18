@@ -21,17 +21,16 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<!--
-	  Export compliance. Quietbox implements industry-standard encryption
-	  (Argon2id + XChaCha20-Poly1305 via libsodium) IN ADDITION TO the OS, so
-	  its encryption is NON-EXEMPT. `true` is the accurate value and stops App
-	  Store Connect re-asking the export-compliance questionnaire on every
-	  upload. It triggers export documentation: a French encryption declaration
-	  if you distribute in France, and US BIS self-classification (License
-	  Exception ENC, ECCN 5A992.c/5D992.c). This is a legal determination —
-	  confirm for your distribution before shipping. See docs/shipping-guide.md.
+	  Export compliance is handled in App Store Connect per submission, NOT
+	  declared here. (Setting ITSAppUsesNonExemptEncryption=true while App Store
+	  Connect holds export-compliance documentation with a code caused upload
+	  error 90592 — the build's empty compliance code didn't match. Omitting the
+	  key lets App Store Connect ask the encryption questions on each build.)
+	  Quietbox uses standard published crypto (Argon2id + XChaCha20 via
+	  libsodium): answer "uses encryption: yes", not one of the simple
+	  exemptions, not proprietary (no CCATS), mass-market License Exception ENC.
+	  See docs/app-store-connect-checklist.md §5.
 	-->
-	<key>ITSAppUsesNonExemptEncryption</key>
-	<true/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>UILaunchScreen</key>

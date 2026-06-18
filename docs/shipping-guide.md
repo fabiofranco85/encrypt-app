@@ -188,29 +188,25 @@ only OS-built-in crypto, HTTPS, authentication-only, or DRM). So:
 - "Does it qualify for the exemptions?" → **No** — Quietbox encrypts arbitrary
   user data with its own crypto, which is non-exempt.
 
-The key is **already set** in `Sources/Resources/Info.plist` so the questionnaire
-won't re-appear on every upload:
+The Info.plist deliberately does **not** declare `ITSAppUsesNonExemptEncryption`.
+Baking in `<true/>` while App Store Connect holds export-compliance documentation
+makes the upload fail with **error 90592** (the build's empty
+`ITSEncryptionExportComplianceCode` doesn't match ASC's). Omitting the key lets
+App Store Connect ask the encryption questions on each build — the answers above —
+which uploads cleanly.
 
-```xml
-<key>ITSAppUsesNonExemptEncryption</key>
-<true/>
-```
-
-`<true/>` ("uses non-exempt encryption") is the accurate value here. It implies
-two real obligations, both standard for an open-source-crypto app:
+Two real obligations still apply for non-exempt crypto:
 
 1. **France:** upload a **French encryption declaration** in App Store Connect —
-   *only* if you distribute on the App Store in France. (Exclude France and this
-   isn't triggered.)
+   *only* if you distribute on the App Store in France.
 2. **US BIS:** Quietbox is a **mass-market** product (ECCN 5A992.c/5D992.c) under
    **License Exception ENC §740.17(b)(1)**. You self-classify and file a short
-   **annual self-classification report** to BIS (a granted **CCATS** waives the
-   annual report).
+   **annual self-classification report** to BIS (a granted **CCATS** waives it).
 
 > **This is a legal/compliance question — verify it for your distribution; this
-> guide is not legal advice.** If, after review, you conclude your use *is*
-> exempt, set the key to `<false/>` instead. Do not leave it unset, or you'll be
-> re-asked on every upload.
+> guide is not legal advice.** If you ever want the streamlined Info.plist key
+> back, add BOTH `ITSAppUsesNonExemptEncryption=true` AND the matching
+> `ITSEncryptionExportComplianceCode` that App Store Connect generates.
 
 ### 3.5 Invite testers
 
@@ -300,7 +296,7 @@ xcodebuild -project Quietbox.xcodeproj -scheme Quietbox -configuration Release \
 | "Bundle identifier is not available" | It must be globally unique — change `PRODUCT_BUNDLE_IDENTIFIER` in `project.yml`, regenerate. |
 | Build number rejected ("already exists") | Increase `CURRENT_PROJECT_VERSION` and re-archive. |
 | App won't launch on device | Trust the developer cert in *Settings ▸ General ▸ VPN & Device Management*; enable Developer Mode. |
-| Asked export-compliance every upload | Set `ITSAppUsesNonExemptEncryption` in `Info.plist` (see §3.4). |
+| Upload fails: error 90592 / "Invalid Export Compliance Code" | The build declares `ITSAppUsesNonExemptEncryption` but has no matching `ITSEncryptionExportComplianceCode`. Remove the key from `Info.plist` and answer compliance in App Store Connect instead (see §3.4). |
 | Changes to `project.yml` don't show up | Re-run `xcodegen generate`. |
 | Can't archive | Destination must be a device / "Any iOS Device", not a simulator. |
 

@@ -83,12 +83,13 @@ so the logic is fully covered by tests that run on any Mac with Xcode. See
 ## Export compliance
 
 Quietbox implements standard, well-known cryptography (libsodium) on top of the
-OS, so its encryption is **non-exempt**. `ITSAppUsesNonExemptEncryption` is set
-to `true` in `Info.plist`, which streamlines App Store submission and implies a
-French encryption declaration (if distributing in France) and US BIS
-self-classification (mass-market, License Exception ENC). See
-[`docs/shipping-guide.md`](docs/shipping-guide.md) §3.4 — and treat it as a
-legal determination for your distribution, not legal advice.
+OS, so its encryption is **non-exempt**. Export compliance is answered in **App
+Store Connect** per submission — the Info.plist does *not* declare
+`ITSAppUsesNonExemptEncryption` (baking in `true` without a matching compliance
+code causes upload error 90592). It implies a French encryption declaration (if
+distributing in France) and US BIS self-classification (mass-market, License
+Exception ENC). See [`docs/shipping-guide.md`](docs/shipping-guide.md) §3.4 — and
+treat it as a legal determination for your distribution, not legal advice.
 
 ## Privacy
 
