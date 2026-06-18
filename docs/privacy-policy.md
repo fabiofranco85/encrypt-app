@@ -1,25 +1,25 @@
 ---
-title: Cipherbox Privacy Policy
+title: Quietbox Privacy Policy
 ---
 
-# Cipherbox Privacy Policy
+# Quietbox Privacy Policy
 
 _Last updated: 16 June 2026_
 
-Cipherbox is an iPhone app that encrypts and decrypts text and files with a
-password. This policy explains, plainly, what Cipherbox does and does not do with
+Quietbox is an iPhone app that encrypts and decrypts text and files with a
+password. This policy explains, plainly, what Quietbox does and does not do with
 your information.
 
 ## The short version
 
-**Cipherbox does not collect any data.** Everything happens on your device.
+**Quietbox does not collect any data.** Everything happens on your device.
 There are no accounts, no servers, no network connections, no analytics, and no
 tracking. We never see your password, your messages, or your files — they never
 leave your iPhone.
 
 ## What we collect
 
-**Nothing.** Cipherbox has no backend and makes no network requests. We do not
+**Nothing.** Quietbox has no backend and makes no network requests. We do not
 collect, transmit, store, sell, or share any personal data or usage data.
 
 ## How your data is handled on your device
@@ -30,7 +30,7 @@ collect, transmit, store, sell, or share any personal data or usage data.
 - **Text** you encrypt or decrypt is processed in memory. Encrypted text can be
   copied to your clipboard; that is handled by iOS, under your control.
 - **Files** you encrypt or decrypt are processed on device. When you choose to
-  **share** or **save** an artifact, Cipherbox writes it to a location you pick
+  **share** or **save** an artifact, Quietbox writes it to a location you pick
   (or hands it to the iOS share sheet) at your request. Temporary files created
   for sharing live in the app's sandboxed temporary directory and are managed by
   iOS.
@@ -40,7 +40,7 @@ none of this data is "collected" as defined by Apple's App Privacy guidelines.
 
 ## Cryptography
 
-Cipherbox uses well-known, published cryptography from the libsodium library:
+Quietbox uses well-known, published cryptography from the libsodium library:
 Argon2id (RFC 9106) for password-based key derivation and
 XChaCha20-Poly1305-IETF for authenticated encryption. The cryptographic
 parameters and salts are stored inside each artifact so it can be decrypted
@@ -49,14 +49,14 @@ be recovered — not by you, and not by us.**
 
 ## Permissions
 
-Cipherbox requests access to files only when you explicitly pick a file to
+Quietbox requests access to files only when you explicitly pick a file to
 encrypt, or choose where to save a decrypted file. It does not request access to
 your contacts, location, camera, microphone, photos library, or any other
 sensitive data, and it has no network entitlement.
 
 ## Children's privacy
 
-Cipherbox does not collect data from anyone, including children.
+Quietbox does not collect data from anyone, including children.
 
 ## Changes to this policy
 

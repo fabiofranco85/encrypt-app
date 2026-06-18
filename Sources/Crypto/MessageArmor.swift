@@ -5,8 +5,8 @@
 import Foundation
 
 enum MessageArmor {
-    static let header = "-----BEGIN CIPHERBOX MESSAGE-----"
-    static let footer = "-----END CIPHERBOX MESSAGE-----"
+    static let header = "-----BEGIN QUIETBOX MESSAGE-----"
+    static let footer = "-----END QUIETBOX MESSAGE-----"
     private static let lineWidth = 64
 
     /// Wraps container bytes into an armored, copy-pasteable block.

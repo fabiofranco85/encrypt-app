@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Cipherbox</string>
+	<string>Quietbox</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -21,7 +21,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<!--
-	  Export compliance. Cipherbox implements industry-standard encryption
+	  Export compliance. Quietbox implements industry-standard encryption
 	  (Argon2id + XChaCha20-Poly1305 via libsodium) IN ADDITION TO the OS, so
 	  its encryption is NON-EXEMPT. `true` is the accurate value and stops App
 	  Store Connect re-asking the export-compliance questionnaire on every
@@ -52,7 +52,7 @@
 			<key>UTTypeIdentifier</key>
 			<string>com.cipherbox.cipher</string>
 			<key>UTTypeDescription</key>
-			<string>Cipherbox Encrypted Artifact</string>
+			<string>Quietbox Encrypted Artifact</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.data</string>
@@ -61,11 +61,11 @@
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>cipherbox</string>
+					<string>quietbox</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>
-					<string>application/x-cipherbox</string>
+					<string>application/x-quietbox</string>
 				</array>
 			</dict>
 		</dict>
@@ -74,7 +74,7 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeName</key>
-			<string>Cipherbox Encrypted Artifact</string>
+			<string>Quietbox Encrypted Artifact</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>

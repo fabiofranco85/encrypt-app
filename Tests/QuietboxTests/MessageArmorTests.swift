@@ -1,5 +1,5 @@
 import XCTest
-@testable import Cipherbox
+@testable import Quietbox
 
 final class MessageArmorTests: XCTestCase {
     private let sample = Data((0..<200).map { UInt8(truncatingIfNeeded: $0) })

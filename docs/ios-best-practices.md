@@ -67,7 +67,7 @@ bottom. Targeting **iOS 17+**, **Swift 6**, **Xcode 16+**.
 - **`.fileImporter`** for picking files/artifacts to process; access
   security-scoped URLs with `startAccessingSecurityScopedResource()`.
 - Declare a custom **exported UTType** (`com.cipherbox.cipher`, extension
-  `.cipherbox`) and `CFBundleDocumentTypes` so artifacts open back into the app.
+  `.quietbox`) and `CFBundleDocumentTypes` so artifacts open back into the app.
 
 ## Testing
 

@@ -1,5 +1,5 @@
 import XCTest
-@testable import Cipherbox
+@testable import Quietbox
 
 /// Exercises the full encrypt/decrypt pipeline (container + payload + armor)
 /// using the deterministic FakeCryptoEngine — no native dependency required.
@@ -32,7 +32,7 @@ final class CryptoServiceTests: XCTestCase {
 
     // MARK: File
 
-    func test_encryptFile_producesShareableArtifactNamedCipherbox() throws {
+    func test_encryptFile_producesShareableArtifactNamedQuietbox() throws {
         let artifact = try service.encryptFile(
             data: Data([0xDE, 0xAD, 0xBE, 0xEF]),
             filename: "photo.jpg",
@@ -40,7 +40,7 @@ final class CryptoServiceTests: XCTestCase {
         )
         XCTAssertEqual(artifact.allowedActions, [.copy, .share, .save])
         if case let .file(_, filename) = artifact.content {
-            XCTAssertEqual(filename, "photo.jpg.cipherbox")
+            XCTAssertEqual(filename, "photo.jpg.quietbox")
         } else {
             XCTFail("Expected file content")
         }

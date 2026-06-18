@@ -190,7 +190,7 @@ struct ResultCard: View {
 
     private func contentType(forExtension ext: String) -> UTType {
         guard !ext.isEmpty else { return .data }
-        if ext.lowercased() == CryptoService.fileExtension { return .cipherbox }
+        if ext.lowercased() == CryptoService.fileExtension { return .quietbox }
         return UTType(filenameExtension: ext) ?? .data
     }
 }

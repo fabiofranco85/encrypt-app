@@ -7,7 +7,7 @@ import Foundation
 /// Errors produced by the crypto pipeline.
 enum CryptoError: Error, Equatable {
     /// The artifact is too short, has a bad magic number, or is otherwise
-    /// not parseable as a Cipherbox container.
+    /// not parseable as a Quietbox container.
     case malformedArtifact
     /// The artifact was produced by a newer, unsupported format version.
     case unsupportedVersion(UInt8)
@@ -26,9 +26,9 @@ enum CryptoError: Error, Equatable {
     var userMessage: String {
         switch self {
         case .malformedArtifact:
-            return "This doesn’t look like a Cipherbox message or file."
+            return "This doesn’t look like a Quietbox message or file."
         case .unsupportedVersion:
-            return "This was made with a newer version of Cipherbox. Please update."
+            return "This was made with a newer version of Quietbox. Please update."
         case .unsupportedAlgorithm:
             return "This artifact uses an option this version can’t open."
         case .authenticationFailed:

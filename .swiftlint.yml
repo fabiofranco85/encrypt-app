@@ -1,4 +1,4 @@
-# SwiftLint configuration for Cipherbox.
+# SwiftLint configuration for Quietbox.
 # Run `swiftlint` from the repo root (requires `brew install swiftlint`).
 
 included:
@@ -6,7 +6,7 @@ included:
   - Tests
 
 excluded:
-  - Cipherbox.xcodeproj
+  - Quietbox.xcodeproj
   - .build
 
 disabled_rules:
