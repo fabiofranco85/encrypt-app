@@ -91,8 +91,9 @@ Expected result: **4+**.
 
 ## Export compliance (encryption)
 
-`ITSAppUsesNonExemptEncryption` is already `true` in the build, so the app declares
-non-exempt encryption. If App Store Connect asks:
+Export compliance is answered in App Store Connect (the Info.plist does **not**
+declare `ITSAppUsesNonExemptEncryption` — that caused upload error 90592). When
+App Store Connect asks:
 - Uses encryption: **Yes**
 - Uses only exemptions (OS-only / HTTPS / authentication / DRM): **No** — Quietbox
   encrypts arbitrary user data with its own standard algorithms.
