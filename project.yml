@@ -1,4 +1,4 @@
-name: Cipherbox
+name: Quietbox
 options:
   bundleIdPrefix: com.cipherbox
   deploymentTarget:
@@ -20,7 +20,7 @@ settings:
     CURRENT_PROJECT_VERSION: "1"
 
 targets:
-  Cipherbox:
+  Quietbox:
     type: application
     platform: iOS
     deploymentTarget: "26.0"
@@ -31,7 +31,7 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.cipherbox.app
-        PRODUCT_NAME: Cipherbox
+        PRODUCT_NAME: Quietbox
         TARGETED_DEVICE_FAMILY: "1" # iPhone only
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: Sources/Resources/Info.plist
@@ -40,14 +40,14 @@ targets:
         SWIFT_STRICT_CONCURRENCY: complete
         CODE_SIGN_STYLE: Automatic
 
-  CipherboxTests:
+  QuietboxTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: Tests/CipherboxTests
+      - path: Tests/QuietboxTests
     dependencies:
-      - target: Cipherbox
+      - target: Quietbox
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.cipherbox.tests
@@ -55,14 +55,14 @@ targets:
         CODE_SIGNING_ALLOWED: NO
         SWIFT_STRICT_CONCURRENCY: complete
 
-  CipherboxIntegrationTests:
+  QuietboxIntegrationTests:
     type: bundle.unit-test
     platform: iOS
     deploymentTarget: "26.0"
     sources:
-      - path: Tests/CipherboxIntegrationTests
+      - path: Tests/QuietboxIntegrationTests
     dependencies:
-      - target: Cipherbox
+      - target: Quietbox
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.cipherbox.integrationtests
@@ -71,15 +71,15 @@ targets:
         SWIFT_STRICT_CONCURRENCY: complete
 
 schemes:
-  Cipherbox:
+  Quietbox:
     build:
       targets:
-        Cipherbox: all
+        Quietbox: all
     run:
       config: Debug
     test:
       config: Debug
       gatherCoverageData: true
       targets:
-        - CipherboxTests
-        - CipherboxIntegrationTests
+        - QuietboxTests
+        - QuietboxIntegrationTests

@@ -39,7 +39,7 @@ final class DecryptViewModel {
 
     // MARK: Actions
 
-    /// Pre-loads a `.cipherbox` file opened from outside the app (share sheet /
+    /// Pre-loads a `.quietbox` file opened from outside the app (share sheet /
     /// Files), switching to file mode.
     func load(file: PickedFile) {
         inputMode = .file

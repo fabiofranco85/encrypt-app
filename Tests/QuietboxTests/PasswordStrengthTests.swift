@@ -1,5 +1,5 @@
 import XCTest
-@testable import Cipherbox
+@testable import Quietbox
 
 final class PasswordStrengthTests: XCTestCase {
     func test_empty_isEmptyLevelWithZeroScore() {

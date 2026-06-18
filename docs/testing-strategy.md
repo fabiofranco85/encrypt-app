@@ -5,7 +5,7 @@ native crypto is covered by a clearly separated integration suite.
 
 ## Two test targets
 
-### 1. `CipherboxTests` — pure unit tests (no native dependency)
+### 1. `QuietboxTests` — pure unit tests (no native dependency)
 
 Run anywhere Xcode can build the app target; do not require libsodium to be
 exercised (they use a `FakeCryptoEngine`). Coverage:
@@ -27,7 +27,7 @@ exercised (they use a `FakeCryptoEngine`). Coverage:
   state transitions (idle→working→result/error), allowed-action policy, that
   text artifacts never expose share/save.
 
-### 2. `CipherboxIntegrationTests` — real crypto (requires libsodium)
+### 2. `QuietboxIntegrationTests` — real crypto (requires libsodium)
 
 - **`SodiumCryptoEngineTests`** — KDF determinism for fixed salt+params; KDF
   changes with salt; AEAD seal/open round trip; wrong key fails; nonce/salt
@@ -49,7 +49,7 @@ exercised (they use a `FakeCryptoEngine`). Coverage:
 
 ```bash
 xcodegen generate
-xcodebuild test -project Cipherbox.xcodeproj -scheme Cipherbox \
+xcodebuild test -project Quietbox.xcodeproj -scheme Quietbox \
   -destination 'platform=iOS Simulator,name=iPhone 16'
 ```
 

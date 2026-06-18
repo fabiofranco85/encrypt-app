@@ -1,10 +1,10 @@
 //  CipherContainer.swift
-//  The binary format (v1) of a Cipherbox artifact. Header fields are PLAINTEXT;
+//  The binary format (v1) of a Quietbox artifact. Header fields are PLAINTEXT;
 //  all secrets live inside `ciphertext`. See docs/crypto-design.md.
 
 import Foundation
 
-/// A parsed Cipherbox artifact.
+/// A parsed Quietbox artifact.
 ///
 /// On-wire layout (big-endian):
 /// ```

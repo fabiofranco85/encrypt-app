@@ -1,5 +1,5 @@
 import XCTest
-@testable import Cipherbox
+@testable import Quietbox
 
 /// Exercises the REAL libsodium-backed engine. Requires the Sodium package to
 /// build, so it lives in the integration target.

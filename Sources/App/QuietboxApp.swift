@@ -1,5 +1,5 @@
-//  CipherboxApp.swift
-//  App entry point. Wires up the production crypto engine and routes `.cipherbox`
+//  QuietboxApp.swift
+//  App entry point. Wires up the production crypto engine and routes `.quietbox`
 //  files opened from outside the app into the Decrypt screen.
 
 import SwiftUI
@@ -15,7 +15,7 @@ enum AppMode: String, CaseIterable, Identifiable, Sendable {
 }
 
 @main
-struct CipherboxApp: App {
+struct QuietboxApp: App {
     @State private var mode: AppMode = .encrypt
     @State private var encryptViewModel: EncryptViewModel
     @State private var decryptViewModel: DecryptViewModel
@@ -35,7 +35,7 @@ struct CipherboxApp: App {
             )
             .tint(AppTheme.accent)
             .onOpenURL { url in
-                // A `.cipherbox` file was opened from Files / a share sheet.
+                // A `.quietbox` file was opened from Files / a share sheet.
                 Task { @MainActor in
                     guard let file = try? FileReader.read(url: url) else { return }
                     decryptViewModel.load(file: file)

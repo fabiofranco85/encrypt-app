@@ -26,7 +26,7 @@ struct RootView: View {
                 .transition(.opacity)
             }
             .padding(.horizontal, AppTheme.Spacing.medium)
-            .navigationTitle("Cipherbox")
+            .navigationTitle("Quietbox")
             .navigationBarTitleDisplayMode(.inline)
             .background(backgroundGradient)
             .toolbar {

@@ -1,9 +1,9 @@
-# Shipping Cipherbox: Simulator → TestFlight → App Store
+# Shipping Quietbox: Simulator → TestFlight → App Store
 
-A practical, end-to-end guide to run Cipherbox locally, test it on your own
+A practical, end-to-end guide to run Quietbox locally, test it on your own
 iPhone via TestFlight, and publish it to the App Store.
 
-> Cipherbox is generated from `project.yml` with **XcodeGen** and uses
+> Quietbox is generated from `project.yml` with **XcodeGen** and uses
 > **Argon2id + XChaCha20-Poly1305** (libsodium). Those two facts add a couple of
 > steps you wouldn't have in a plain template app — they're called out below.
 
@@ -14,7 +14,7 @@ iPhone via TestFlight, and publish it to the App Store.
 | Need | Notes |
 |------|-------|
 | A **Mac** | Apple Silicon or Intel, on a current macOS. |
-| **Xcode 26+** | **Required** — Cipherbox targets **iOS 26** and uses Liquid Glass, so it needs the iOS 26 SDK. Install from the Mac App Store, then run it once to finish component setup. |
+| **Xcode 26+** | **Required** — Quietbox targets **iOS 26** and uses Liquid Glass, so it needs the iOS 26 SDK. Install from the Mac App Store, then run it once to finish component setup. |
 | **Command Line Tools** | `xcode-select --install` (usually installed with Xcode). |
 | **Homebrew** | <https://brew.sh> — used to install XcodeGen. |
 | **XcodeGen** | `brew install xcodegen` |
@@ -34,8 +34,8 @@ This is the fastest loop and needs **no** paid account or signing.
 From the repo root:
 
 ```bash
-xcodegen generate      # creates Cipherbox.xcodeproj from project.yml
-open Cipherbox.xcodeproj
+xcodegen generate      # creates Quietbox.xcodeproj from project.yml
+open Quietbox.xcodeproj
 ```
 
 > Re-run `xcodegen generate` any time `project.yml` or the file layout changes.
@@ -44,7 +44,7 @@ open Cipherbox.xcodeproj
 
 ### 1b. Run
 
-1. In Xcode's toolbar, set the **scheme** to `Cipherbox` (it should be selected
+1. In Xcode's toolbar, set the **scheme** to `Quietbox` (it should be selected
    automatically).
 2. Pick a simulated device from the run-destination menu, e.g.
    **iPhone 16**. (If none are installed: *Xcode ▸ Settings ▸ Components* and
@@ -58,7 +58,7 @@ The first build resolves the **swift-sodium** Swift Package — give it a minute
 - **Encrypt text** → tap **Copy** (text artifacts are copy-only by design).
 - **Encrypt a file** (use the Files app / Photos to have something to pick) →
   try **Copy**, **Share**, and **Save**.
-- **Decrypt**: paste the armored text back, or open the saved `.cipherbox` file →
+- **Decrypt**: paste the armored text back, or open the saved `.quietbox` file →
   confirm you get the original back.
 - **Wrong password** → confirm it fails with a friendly error, not garbage.
 
@@ -66,8 +66,8 @@ The first build resolves the **swift-sodium** Swift Package — give it a minute
 
 ```bash
 xcodebuild test \
-  -project Cipherbox.xcodeproj \
-  -scheme Cipherbox \
+  -project Quietbox.xcodeproj \
+  -scheme Quietbox \
   -destination 'platform=iOS Simulator,name=iPhone 16'
 ```
 
@@ -77,17 +77,17 @@ This is exactly what CI runs (47 tests: pure unit + real-crypto integration).
 
 ## 2. Run on your real iPhone (developer build)
 
-Great for checking haptics, the share sheet, "Open in Cipherbox", and real
+Great for checking haptics, the share sheet, "Open in Quietbox", and real
 performance of the (intentionally slow) Argon2id KDF.
 
 ### 2a. Set your signing team
 
-1. Open `Cipherbox.xcodeproj`, select the **Cipherbox** target ▸ **Signing &
+1. Open `Quietbox.xcodeproj`, select the **Quietbox** target ▸ **Signing &
    Capabilities**.
 2. Check **Automatically manage signing**.
 3. Choose your **Team** (your Apple ID's personal team works for development).
 4. If the bundle id `com.cipherbox.app` is taken (it must be globally unique for
-   distribution), change it — e.g. `com.yourname.cipherbox` — in
+   distribution), change it — e.g. `com.yourname.quietbox` — in
    **`project.yml`** under `PRODUCT_BUNDLE_IDENTIFIER`, then re-run
    `xcodegen generate`. Editing `project.yml` (not the Xcode UI) keeps the
    change from being wiped on regeneration.
@@ -124,12 +124,12 @@ the full App Store review for internal testers.
 1. Go to <https://appstoreconnect.apple.com> ▸ **Apps** ▸ **＋ ▸ New App**.
 2. Fill in:
    - **Platform:** iOS
-   - **Name:** Cipherbox (must be unique across the App Store; pick another if
+   - **Name:** Quietbox (must be unique across the App Store; pick another if
      taken)
    - **Primary language**
    - **Bundle ID:** select the one matching your project (register it first at
      *Certificates, Identifiers & Profiles ▸ Identifiers* if it's not listed)
-   - **SKU:** any internal string, e.g. `cipherbox-001`.
+   - **SKU:** any internal string, e.g. `quietbox-001`.
 
 ### 3.2 Set the version and build number
 
@@ -158,34 +158,34 @@ Bump `CURRENT_PROJECT_VERSION` for **every** new upload (1, 2, 3, …), re-run
 ```bash
 xcodegen generate
 
-xcodebuild -project Cipherbox.xcodeproj -scheme Cipherbox \
+xcodebuild -project Quietbox.xcodeproj -scheme Quietbox \
   -configuration Release \
-  -archivePath build/Cipherbox.xcarchive \
+  -archivePath build/Quietbox.xcarchive \
   -destination 'generic/platform=iOS' \
   archive
 
 xcodebuild -exportArchive \
-  -archivePath build/Cipherbox.xcarchive \
+  -archivePath build/Quietbox.xcarchive \
   -exportOptionsPlist ExportOptions.plist \
   -exportPath build/export
-# then upload build/export/Cipherbox.ipa with Transporter.app or:
-xcrun altool --upload-app -f build/export/Cipherbox.ipa -t ios \
+# then upload build/export/Quietbox.ipa with Transporter.app or:
+xcrun altool --upload-app -f build/export/Quietbox.ipa -t ios \
   --apiKey <KEY_ID> --apiIssuer <ISSUER_ID>
 ```
 
 (You'll create `ExportOptions.plist` once — Xcode can generate it during a
 manual export, or use `method: app-store-connect`.)
 
-### 3.4 ⚠️ Export compliance (because Cipherbox uses encryption)
+### 3.4 ⚠️ Export compliance (because Quietbox uses encryption)
 
 After the build finishes processing, App Store Connect asks **export compliance**
-questions. Cipherbox **implements** standard, published cryptography (Argon2id +
+questions. Quietbox **implements** standard, published cryptography (Argon2id +
 XChaCha20-Poly1305 via libsodium) *in addition to* the OS — that is
 **non-exempt** encryption, **not** one of the simple exemptions (which cover
 only OS-built-in crypto, HTTPS, authentication-only, or DRM). So:
 
 - "Does your app use encryption?" → **Yes**.
-- "Does it qualify for the exemptions?" → **No** — Cipherbox encrypts arbitrary
+- "Does it qualify for the exemptions?" → **No** — Quietbox encrypts arbitrary
   user data with its own crypto, which is non-exempt.
 
 The key is **already set** in `Sources/Resources/Info.plist` so the questionnaire
@@ -202,7 +202,7 @@ two real obligations, both standard for an open-source-crypto app:
 1. **France:** upload a **French encryption declaration** in App Store Connect —
    *only* if you distribute on the App Store in France. (Exclude France and this
    isn't triggered.)
-2. **US BIS:** Cipherbox is a **mass-market** product (ECCN 5A992.c/5D992.c) under
+2. **US BIS:** Quietbox is a **mass-market** product (ECCN 5A992.c/5D992.c) under
    **License Exception ENC §740.17(b)(1)**. You self-classify and file a short
    **annual self-classification report** to BIS (a granted **CCATS** waives the
    annual report).
@@ -245,13 +245,13 @@ In App Store Connect ▸ your app ▸ the version you're submitting:
   data (App Review Guideline 5.1.1(i)). The policy ([`docs/privacy-policy.md`](privacy-policy.md))
   is published as a public gist:
   <https://gist.github.com/fabiofranco85/699d83b8182a251d8226ab15b05064dc>.
-  Paste that URL into **App Information ▸ Privacy Policy**. Cipherbox also surfaces
+  Paste that URL into **App Information ▸ Privacy Policy**. Quietbox also surfaces
   the same link in-app via the **ⓘ About** sheet (the guideline requires it in
   *both* places); the URL lives in one place in code: `AppInfo.privacyPolicyURL`.
 
 ### 4.2 App Privacy ("nutrition label")
 
-App Store Connect ▸ **App Privacy**. Cipherbox is on-device with no accounts,
+App Store Connect ▸ **App Privacy**. Quietbox is on-device with no accounts,
 no network, and no telemetry, so the honest answer is **"Data Not Collected."**
 Declare that and you're done — it's a genuine selling point.
 
@@ -281,15 +281,15 @@ Declare that and you're done — it's a genuine selling point.
 
 ```bash
 # Simulator
-xcodegen generate && open Cipherbox.xcodeproj      # then ⌘R
+xcodegen generate && open Quietbox.xcodeproj      # then ⌘R
 
 # Tests (same as CI)
-xcodebuild test -project Cipherbox.xcodeproj -scheme Cipherbox \
+xcodebuild test -project Quietbox.xcodeproj -scheme Quietbox \
   -destination 'platform=iOS Simulator,name=iPhone 16'
 
 # Archive for upload
-xcodebuild -project Cipherbox.xcodeproj -scheme Cipherbox -configuration Release \
-  -archivePath build/Cipherbox.xcarchive -destination 'generic/platform=iOS' archive
+xcodebuild -project Quietbox.xcodeproj -scheme Quietbox -configuration Release \
+  -archivePath build/Quietbox.xcarchive -destination 'generic/platform=iOS' archive
 ```
 
 ## 6. Common gotchas

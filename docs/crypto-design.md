@@ -1,6 +1,6 @@
 # Cryptographic Design
 
-Cipherbox protects text and files with a password. This document specifies the
+Quietbox protects text and files with a password. This document specifies the
 exact scheme and the artifact format. **Changing any of this requires a format
 version bump and a backward-compatible decoder.**
 
@@ -70,7 +70,7 @@ file: filename = original name (e.g. "report.pdf"); data = file bytes
 
 ## Container format (v1)
 
-The container is what gets written to a `.cipherbox` file or armored into text.
+The container is what gets written to a `.quietbox` file or armored into text.
 **Only the header is plaintext.** All secrets are inside `ciphertext`.
 
 ```
@@ -98,14 +98,14 @@ stream — both cause authentication to fail.
 Text artifacts are copy-only. The binary container is Base64-encoded and wrapped:
 
 ```
------BEGIN CIPHERBOX MESSAGE-----
+-----BEGIN QUIETBOX MESSAGE-----
 <base64, wrapped at 64 columns>
------END CIPHERBOX MESSAGE-----
+-----END QUIETBOX MESSAGE-----
 ```
 
 The decoder is whitespace-tolerant and also accepts a bare Base64 string, so a
 pasted message survives email/chat reflow. Decrypting accepts either an armored
-string or a raw `.cipherbox` file.
+string or a raw `.quietbox` file.
 
 ## Failure behavior
 

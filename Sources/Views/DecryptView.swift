@@ -1,5 +1,5 @@
 //  DecryptView.swift
-//  The Decrypt screen: paste an armored message or pick a .cipherbox file,
+//  The Decrypt screen: paste an armored message or pick a .quietbox file,
 //  enter the password, and recover the original text or file.
 
 import SwiftUI
@@ -60,9 +60,9 @@ struct DecryptView: View {
                 SelectedFileRow(file: file) { viewModel.pickedFile = nil }
             } else {
                 FilePickerButton(
-                    title: "Choose a .cipherbox file",
+                    title: "Choose a .quietbox file",
                     systemImage: "doc.badge.plus",
-                    allowedTypes: [.cipherbox, .data]
+                    allowedTypes: [.quietbox, .data]
                 ) { viewModel.pickedFile = $0 }
             }
         }

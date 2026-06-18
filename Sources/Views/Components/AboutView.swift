@@ -15,7 +15,7 @@ struct AboutView: View {
                 }
 
                 Section {
-                    Text("Cipherbox encrypts and decrypts your text and files entirely on this device. No accounts, no network, no telemetry. Your password never leaves memory.")
+                    Text("Quietbox encrypts and decrypts your text and files entirely on this device. No accounts, no network, no telemetry. Your password never leaves memory.")
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }
@@ -24,7 +24,7 @@ struct AboutView: View {
                     Link(destination: AppInfo.privacyPolicyURL) {
                         Label("Privacy Policy", systemImage: "hand.raised.fill")
                     }
-                    .accessibilityHint("Opens the Cipherbox privacy policy in your browser")
+                    .accessibilityHint("Opens the Quietbox privacy policy in your browser")
 
                     LabeledContent("Version", value: AppInfo.versionString)
                 }
@@ -45,7 +45,7 @@ struct AboutView: View {
                 .font(.system(size: 44))
                 .foregroundStyle(AppTheme.brandGradient)
                 .accessibilityHidden(true)
-            Text("Cipherbox")
+            Text("Quietbox")
                 .font(.title2.bold())
             Text("Lock your words and files behind a password.")
                 .font(.footnote)
