@@ -48,6 +48,18 @@ final class DecryptViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.errorMessage, CryptoError.authenticationFailed.userMessage)
     }
 
+    func test_decrypt_clearsPasswordField() async throws {
+        let armored = try armoredMessage("hidden words", password: "pw")
+        let viewModel = DecryptViewModel(service: service)
+        viewModel.inputMode = .paste
+        viewModel.pastedText = armored
+        viewModel.password = "pw"
+
+        await viewModel.decrypt()
+
+        XCTAssertTrue(viewModel.password.isEmpty)
+    }
+
     func test_loadFile_switchesToFileModeAndClearsResult() {
         let viewModel = DecryptViewModel(service: service)
         viewModel.load(file: PickedFile(filename: "x.quietbox", data: Data([1, 2, 3])))

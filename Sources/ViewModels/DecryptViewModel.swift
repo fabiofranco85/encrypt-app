@@ -61,6 +61,8 @@ final class DecryptViewModel {
         let text = self.pastedText
         let file = self.pickedFile
 
+        self.password = ""
+
         do {
             let result = try await Task.detached(priority: .userInitiated) {
                 let source: DecryptSource

@@ -54,6 +54,19 @@ final class EncryptViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.artifact?.allowedActions, [.copy, .share, .save])
     }
 
+    func test_encrypt_clearsPasswordFields() async {
+        let viewModel = makeViewModel()
+        viewModel.sourceKind = .text
+        viewModel.messageText = "top secret"
+        viewModel.password = "pw"
+        viewModel.confirmPassword = "pw"
+
+        await viewModel.encrypt()
+
+        XCTAssertTrue(viewModel.password.isEmpty)
+        XCTAssertTrue(viewModel.confirmPassword.isEmpty)
+    }
+
     func test_clearInputs_resetsEverything() {
         let viewModel = makeViewModel()
         viewModel.messageText = "x"

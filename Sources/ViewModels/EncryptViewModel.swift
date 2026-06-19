@@ -64,6 +64,9 @@ final class EncryptViewModel {
         let message = self.messageText
         let file = self.pickedFile
 
+        self.password = ""
+        self.confirmPassword = ""
+
         do {
             let result = try await Task.detached(priority: .userInitiated) {
                 switch kind {
