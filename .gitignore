@@ -14,6 +14,9 @@ Quietbox.xcodeproj/
 .build/
 .swiftpm/
 Package.resolved
+# ...but DO track the committed lock file Xcode Cloud needs (ci_post_clone copies
+# it into the generated .xcodeproj, which has auto-resolution disabled in cloud).
+!ci_scripts/Package.resolved
 
 # macOS
 .DS_Store
