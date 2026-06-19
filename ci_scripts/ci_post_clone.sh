@@ -4,8 +4,7 @@
 #  Xcode Cloud runs this automatically after cloning the repository and before
 #  the build/test actions. Quietbox's Xcode project is generated from
 #  `project.yml` by XcodeGen and is gitignored, so a freshly-cloned checkout has
-#  no `.xcodeproj`/scheme and no resolved Swift packages. This recreates both in
-#  the Xcode Cloud environment.
+#  no `.xcodeproj`/scheme. This recreates it in the Xcode Cloud environment.
 #
 #  Not used by local builds or the GitHub Actions CI — both already run
 #  `xcodegen generate` themselves.
@@ -28,7 +27,10 @@ cd "$CI_PRIMARY_REPOSITORY_PATH"
 xcodegen generate
 
 # Xcode Cloud builds with automatic Swift Package resolution DISABLED and refuses
-# to build without a Package.resolved. The generated project ships none, so
-# resolve here — this writes Package.resolved to the exact path the build expects
-# (Quietbox.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved).
-xcodebuild -resolvePackageDependencies -project Quietbox.xcodeproj -scheme Quietbox
+# to build without a Package.resolved (and won't resolve one itself). The .xcodeproj
+# is generated, so its resolved file is too — drop our committed lock file into the
+# exact path the build expects. Keep ci_scripts/Package.resolved in sync if the
+# swift-sodium version in project.yml changes (regenerate + recopy locally).
+SWIFTPM_DIR="Quietbox.xcodeproj/project.xcworkspace/xcshareddata/swiftpm"
+mkdir -p "$SWIFTPM_DIR"
+cp ci_scripts/Package.resolved "$SWIFTPM_DIR/Package.resolved"
