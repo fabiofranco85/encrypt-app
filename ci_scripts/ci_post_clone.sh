@@ -10,15 +10,19 @@
 #  Not used by local builds or the GitHub Actions CI — both already run
 #  `xcodegen generate` themselves.
 
-set -e
+set -ex
 
-echo "▸ ci_post_clone: ensuring XcodeGen is installed"
-if ! command -v xcodegen >/dev/null 2>&1; then
-  brew install xcodegen
+# Put Homebrew (and anything it installs, like xcodegen) on PATH. Xcode Cloud's
+# default script PATH doesn't include it, so `xcodegen` would be "command not
+# found" right after install. Xcode Cloud runners are Apple Silicon (/opt/homebrew).
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
-echo "▸ ci_post_clone: generating Quietbox.xcodeproj from project.yml"
+brew install xcodegen
+
+# Generate Quietbox.xcodeproj from project.yml at the repo root.
 cd "$CI_PRIMARY_REPOSITORY_PATH"
 xcodegen generate
-
-echo "▸ ci_post_clone: done"
